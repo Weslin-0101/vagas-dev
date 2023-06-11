@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User_Info {
+model dev {
   id        Int      @id @default(autoincrement())
   name      String
   job       String

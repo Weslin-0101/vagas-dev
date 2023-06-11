@@ -25,6 +25,7 @@ export class AddUserInfoController implements Controller {
 
             return ok(user);
         } catch (error) {
+            console.log(error)
             return serverError(error)
         }
     }

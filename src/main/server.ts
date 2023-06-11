@@ -1,9 +1,10 @@
+import "module-alias/register";
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 import { bodyParser, contentType, cors } from "./middlewares";
-import userRoutes from "./rotues/user-routes";
+import userRoutes from "./routes/user-routes";
 
-const PORT = 3000;
+const PORT = 3002;
 const prisma = new PrismaClient();
 
 const app = express();

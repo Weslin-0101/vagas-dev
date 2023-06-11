@@ -1,11 +1,10 @@
 import { AddUserInfoRepository } from "@/data/protocols/add-user-info-repository";
-import { AddUserInfo } from "@/domain/useCases/add-user-info";
 import { PrismaClient } from "@prisma/client";
 
 export class UserPrismaRepository implements AddUserInfoRepository {
-    async add(data: AddUserInfo.Params): Promise<AddUserInfo.Result> {
+    async add(data: AddUserInfoRepository.Params): Promise<AddUserInfoRepository.Result> {
         const prisma = new PrismaClient();
-        const result = await prisma.user_Info.create({
+        const result = await prisma.dev.create({
             data: data,
         })
 
