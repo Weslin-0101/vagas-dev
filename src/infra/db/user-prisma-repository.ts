@@ -14,7 +14,11 @@ export class UserPrismaRepository implements
     async add(data: AddUserInfoRepository.Params): Promise<AddUserInfoRepository.Result> {
         const prisma = new PrismaClient();
         const result = await prisma.dev.create({
-            data: data,
+            data: {
+                name: data.name,
+                job: data.job,
+                role: "USER"
+            }
         })
 
         const parseId = result.id.toString();
