@@ -1,43 +1,58 @@
-# Este é um teste para desenvolvedores
+# Teste Para Desenvolvedor - Como Rodar o Projeto em Localhost:
 
-# possui 5 testes
+O projeto foi refatorado utiliznado como princípio o DDD (Domain-Driven Design) e o Clean Architecute para que o mesmo esteja bem desacoplado
+e com um design de pastas que torne fácil a manutenção do código, seguindo o **SOLID**
 
-## Introdução
+## 01 Passo:
 
-Este projeto possui um banco de dados fake em fakeData.js com apenas um registro.
-A ideia é melhorar e o CRUD escrito nos 4 arquivos de teste abaixo.
+Ao fazer o **git clone** do projeto e acessar o mesmo dentro da seu IDE, abra o terminal dentro do projeto e rode o seguinte comando:
 
-Será a validada a forma de escrita de código.
-Escreva códigos que humanos consigam entender.
+```
+    npm run install
+```
 
-Fique a vontade para fazer modificaçoes nos serviços, comentários em código, estrutura, mas seja objetivo.
+Esse comando vai ser responsável por baixar todas as dependências do projeto.
 
-## teste1.js
+## 02 Passo:
 
-GET em /user 
+Crie um arquivo na raiz do projeto chamado **.env** e passe para dentro desse arquivo tudo o que está escrito dentro do arquivo **.env.example**.
 
-Possuimos neste arquivo um serviço que faz uma busca no banco fake e retorna um registro.
-Este código funciona, mas é possivel melhorar.
-Veja o que pode deixar ele melhor escrito e mais performatico.
+Após isso, dentro da variável de ambiente **DATABASE_URL**, adicione a url do seu banco de dados. Você pode pegar o banco de dados que já está criado
+dentro do arquivo **docker-compose.yml**. Lá vai estar os enviroments como username, password e o nome do banco de dados para acessá-lo localmente.
 
-## teste2.js
+## 03 Passo:
 
-POST em /users, descubra a intenção dele e o corrija.
+Tenha o Docker instalado em seu PC caso queira subir o container do banco de dados que criei no arquivo **docker-compose.yml**.
 
-## teste3.js
+Caso já possua o Docker em seu PC, rode o seguinte comando no terminal dentro da raiz do projeto:
 
-Este procura um usuário e o deleta da base.
-Retorne sucesso para o client caso realmente tenha sido excluido e deixe o código mais performatico.
+```
+    docker-compose up -d
+```
 
-## teste4.js
+Esse comando vai ser responsável para subir o bando de dados no Docker, após isso vai poder acessar o mesmo dentro do programa que queira para visualizar
+o banco de dados. Um bom programa que costumo usar é o DBeaver!
 
-Atualiza os dados de um usuário especifico.
+## 04 Passo:
 
-## teste5.js
+Rode os seguintes comandos respectivamente no terminal dentro da raiz do projeto:
 
-Retorne quantas vezes determinado usuário foi lido no teste1.
+```
+    npm run build
 
-## teste 6
+    npm run start
+```
 
-Definina uma forma de criar permissão para o usuario, defina se o usuário pode deletar ou atualizar usuários. Crie um middleware para validar essas permissões e adicione no teste4 e teste3.
+O comando **npm run build** é responsável para buildar a aplicação, do qual vai gerar uma pasta chamada **dist** na raiz do projeto.
+O comando **npm run start** vai iniciar a sua aplicação em localhost, do qual está definida com a url: **http://localhost:3002**
 
+## 05 Passo:
+
+Tenha o PostMan instalado em seu PC ou qualquer outro programa para que possa bater nos endpoints da aplicação após a mesma já estar iniciada.
+
+temos os seguintes endpoints configurados dentro da aplicação:
+
+- http://localhost:3002/users          -> Responsável para adicionar um usuário passando o **nome** e o **job**
+- http://localhost:3002/users/:name    -> Responsável para buscar o usuário dentro do banco de dados passando o nome pela url
+- http://localhost:3002/users/:id      -> Responsável para atualizar as informações da conta do usuário passando o ID do mesmo pela url
+- http://localhost:3002/users/:name    -> Responsável para deletar o usuário dentro do banco de dados passando o nome pela url
